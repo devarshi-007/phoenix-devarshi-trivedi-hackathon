@@ -1,18 +1,14 @@
 <script setup>
-/*Define Pinia store*/
-/*import { useUsersStore } from '~/store/users'
-const UsersStore = useUsersStore()
-console.log(UsersStore);*/
 const com = reactive([])
 const startId = ref(1)
 const tempRef = ref('')
 function submit(sId, comVal) {
-  com.push({ id: sId, comment: comVal, replies: [] })
+  com.push({ _id: sId, comment: comVal, comments: [] })
   tempRef.value = ''
   incr()
 }
 function submite(sId, tempRefo, comArr) {
-  comArr.replies.push({ id: sId, comment: tempRefo, replies: [] })
+  comArr.comments.push({ _id: sId, comment: tempRefo, comments: [] })
   incr()
 }
 function incr() {
@@ -23,7 +19,7 @@ function incr() {
   <div class="container mt-3">
     <input v-model="tempRef" type="text" class="w-75" />
     <button class="ms-3" @click="submit(startId, tempRef)">Submit</button>
-    <div v-for="c in com" :key="c.id">
+    <div v-for="c in com" :key="c._id">
       <romshow
         :com-arr="c"
         :start-id="startId"

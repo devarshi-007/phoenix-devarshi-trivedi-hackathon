@@ -12,7 +12,7 @@ function submiter() {
 }
 function submite(sId, tempRefo, comArr) {
   isInputOpen.value = false
-  comArr.replies.push({ id: sId, comment: tempRefo, replies: [] })
+  comArr.comments.push({ _id: sId, comment: tempRefo, comments: [] })
   emits('incStrt')
 }
 function openInput() {
@@ -34,7 +34,7 @@ function incStrt() {
       <input v-model="tempRefo" type="text" />
       <button class="ms-3" @click="submiter()">Submit</button>
     </div>
-    <div v-for="c in props.comArr.replies" :key="c.id">
+    <div v-for="c in props.comArr.comments" :key="c._id">
       <romshow
         class="ms-5"
         :com-arr="c"
